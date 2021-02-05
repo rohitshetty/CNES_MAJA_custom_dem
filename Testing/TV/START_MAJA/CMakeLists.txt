@@ -72,13 +72,15 @@ if(ENABLE_TV)
 endif()
 
 CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/folders.txt.in
-  ${MAJA_TEST_OUTPUT_ROOT}/TV_START_MAJA/folders.txt @ONLY)
+  ${MAJA_BINARY_DIR}/bin/folders.txt @ONLY)
+
+install(FILES ${MAJA_BINARY_DIR}/bin/folders.txt DESTINATION ${CMAKE_INSTALL_PREFIX}/bin)
 
 
 add_test(NAME pyTv-STARTMAJA_CHAIN
          COMMAND ${TEST_DRIVER}
          Execute
-	     ${PYTHON_EXECUTABLE} ${MAJA_SOURCE_DIR}/StartMaja/Start_maja.py -f ${MAJA_TEST_OUTPUT_ROOT}/TV_START_MAJA/folders.txt -t 31UDQ --nbackward 2 -y -v)
+	     ${PYTHON_EXECUTABLE} ${MAJA_SOURCE_DIR}/StartMaja/Start_maja.py -f ${CMAKE_INSTALL_PREFIX}/bin/folders.txt -t 31UDQ --nbackward 2 -y -v)
 
 set_tests_properties(pyTv-STARTMAJA_CHAIN PROPERTIES TIMEOUT 300000)
 
