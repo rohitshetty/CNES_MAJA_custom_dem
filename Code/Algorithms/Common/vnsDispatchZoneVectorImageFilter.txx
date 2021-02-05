@@ -69,7 +69,7 @@ DispatchZoneVectorImageFilter<TInputImage, TOutputImage>::DispatchZoneVectorImag
 	m_NumberOfComponentsPerPixel = 1;
 	// This number will be incremented each time an image
 	// is added over the two minimum required
-	this->SetNumberOfRequiredInputs(2);
+	this->SetNumberOfRequiredInputs(1);
 	this->InPlaceOff();
 }
 
