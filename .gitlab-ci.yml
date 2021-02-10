@@ -102,6 +102,11 @@ build-centos7:
     - sed -i "s,/opt/cots/maja/[0-9]*\.[0-9]*\.[0-9]*/bin,\$MAJA_BIN,g" tv_content.txt
     - sed -i "s,$(pwd)/build/bin,\$MAJA_BIN,g" tv_content.txt
     - sed -i "s,$(pwd)/orchestrator/launcher,\$MAJA_LAUNCHER_PYTHON,g" tv_content.txt
+
+    - sed -i "s,/opt/cots/maja/[0-9]*\.[0-9]*\.[0-9]*/bin,\$MAJA_BIN,g" $(pwd)/build/Testing/TV/START_MAJA/folders.txt
+    - sed -i "s,$(pwd)/data,\$MAJA_DATA,g" $(pwd)/build/Testing/TV/START_MAJA/folders.txt
+    - sed -i "s,$(pwd)/build/Testing/Temporary,\$MAJA_TEST_OUTPUT_ROOT,g" $(pwd)/build/Testing/TV/START_MAJA/folders.txt
+
   artifacts:
     expire_in: 20 days
     when: on_success
@@ -109,6 +114,7 @@ build-centos7:
       - sha1.txt
       - tv_content.txt
       - build-pkg/*.run
+      - build/Testing/TV/START_MAJA/folders.txt
     
 
 # ---------------------------- heavy pipeline ----------------------------------
