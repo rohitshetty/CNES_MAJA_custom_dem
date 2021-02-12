@@ -151,6 +151,11 @@ tv-centos7:
     - time rclone copy s3_otb:maja-data/TV/VENUS data/TV/VENUS
     - time rclone copy s3_otb:maja-data/TV/VENUS_MUSCATE data/TV/VENUS_MUSCATE
     - time rclone copy s3_otb:maja-data/TV/START_MAJA data/TV/START_MAJA
+
+    - sed -i 's,$MAJA_DATA,'$MAJA_DATA',g' build/Testing/TV/START_MAJA/folders.txt
+    - sed -i 's,$MAJA_TEST_OUTPUT_ROOT,'$MAJA_TEST_OUTPUT_ROOT',g' build/Testing/TV/START_MAJA/folders.txt
+    - sed -i 's,$MAJA_BIN,'$MAJA_BIN',g' build/Testing/TV/START_MAJA/folders.txt
+
     - CI/run_tv.sh tv_content.txt
   artifacts:
     expire_in: 20 days
