@@ -34,7 +34,7 @@ class Sentinel2Natif(MajaProduct):
     """
 
     base_resolution = (10, -10)
-    coarse_resolution = (120, -120)
+    coarse_resolution = (240, -240)
 
     @property
     def platform(self):
@@ -150,7 +150,7 @@ class Sentinel2Muscate(MajaProduct):
     """
 
     base_resolution = (10, -10)
-    coarse_resolution = (120, -120)
+    coarse_resolution = (240, -240)
 
     @property
     def platform(self):
@@ -251,7 +251,7 @@ class Sentinel2SSC(MajaProduct):
     """
 
     base_resolution = (10, -10)
-    coarse_resolution = (120, -120)
+    coarse_resolution = (240, -240)
 
     @property
     def platform(self):
