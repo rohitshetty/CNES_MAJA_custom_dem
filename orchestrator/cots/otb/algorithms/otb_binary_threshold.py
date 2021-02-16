@@ -57,11 +57,11 @@ def binary_threshold(input_image, inside_value, outside_value,
         raise MajaOTBCotsException("Error, no threshold given")
 
     if lower_threshold is None:
-        expression = "im1b1<{up}?{in_v}:{out_v}".format(up=upper_threshold, in_v=inside_value, out_v=outside_value)
+        expression = "im1b1<={up}?{in_v}:{out_v}".format(up=upper_threshold, in_v=inside_value, out_v=outside_value)
     elif upper_threshold is None:
-        expression = "(im1b1>{low})?{in_v}:{out_v}".format(low=lower_threshold, in_v=inside_value, out_v=outside_value)
+        expression = "(im1b1>={low})?{in_v}:{out_v}".format(low=lower_threshold, in_v=inside_value, out_v=outside_value)
     else:
-        expression = "(im1b1>{low}&&im1b1<{up})?{in_v}:{out_v}".format(low=lower_threshold, up=upper_threshold,
+        expression = "(im1b1>={low}&&im1b1<={up})?{in_v}:{out_v}".format(low=lower_threshold, up=upper_threshold,
                                                                        in_v=inside_value, out_v=outside_value)
 
     out = band_math([input_image], expression, output_image=output_image, write_output=write_output)

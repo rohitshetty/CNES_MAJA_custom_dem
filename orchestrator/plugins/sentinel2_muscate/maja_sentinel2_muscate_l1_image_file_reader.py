@@ -226,7 +226,7 @@ class Sentinel2MuscateL1ImageFileReader(Sentinel2L1ImageFileReaderBase):
                     self._l2satmasklist[l_ListOfL2Resolution.index(curL1Res)] = sat_mask_app.getoutput().get("out")
                 tmp_sat_resample = os.path.join(working, "tmp_extract_roi_sat_resample_{}.tif".format(curL1Res))
                 sat_resamp_app = resample(sat_mask_app.getoutput().get("out"), dtm_coarse, tmp_sat_resample,
-                                          OtbResampleType.LINEAR, write_output=False)
+                                          OtbResampleType.LINEAR_WITH_RADIUS, write_output=False)
                 self._sub_sat_pipeline.add_otb_app(sat_resamp_app)
                 for l1band in listOfL1Bands:
                     l1BandIdx = l_BandsDefinitions.get_band_id_in_l1(l1band)
@@ -256,7 +256,7 @@ class Sentinel2MuscateL1ImageFileReader(Sentinel2L1ImageFileReaderBase):
                     ndt_mask_app.getoutput().get("out"),
                     dtm_coarse,
                     tmp_ndt_resample,
-                    OtbResampleType.LINEAR,
+                    OtbResampleType.LINEAR_WITH_RADIUS,
                     write_output=False)
                 self._subedg_pipeline.add_otb_app(ndt_resamp_app)
                 for l1band in listOfL1Bands:
@@ -264,7 +264,7 @@ class Sentinel2MuscateL1ImageFileReader(Sentinel2L1ImageFileReaderBase):
                     tmp_ndt_roi = os.path.join(working, "tmp_extract_roi_ndt_{}.tif".format(l1band))
                     tmp_ndt_roi_app = extract_roi(ndt_resamp_app.getoutput().get("out"),
                                                   [self.m_headerHandler.get_l1_ndt_image_index(l1BandIdx) - 1],
-                                                  tmp_ndt_roi, write_output=False)
+                                                  tmp_ndt_roi  + ":uint8", write_output=False)
                     self._subedg_pipeline.add_otb_app(tmp_ndt_roi_app)
                     self._nodatamasksublist[l1BandIdx] = tmp_ndt_roi_app.getoutput().get("out")
             else:
