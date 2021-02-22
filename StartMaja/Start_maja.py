@@ -27,7 +27,7 @@ class StartMaja(object):
     """
     Run the MAJA processor
     """
-    version = "4.3.0"
+    version = "4.3.1"
     current_dir = p.dirname(p.realpath(__file__))
     max_product_difference = timedelta(hours=6)
 
