@@ -18,6 +18,8 @@ use a self-hosted GitLab instance:
 
 https://gitlab.orfeo-toolbox.org/maja/maja
 
+Remember to check out also our [forum](https://forum.orfeo-toolbox.org/c/otb-chains/maja/10), where we discuss some features and improvements. You are welcome to ask questions there as a beginner or future MAJA contributor!
+
 
 
 ## Reporting bugs
