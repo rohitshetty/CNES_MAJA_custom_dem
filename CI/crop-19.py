@@ -248,7 +248,7 @@ def crop_images(out_product_path, product_path, vector_file):
                     list_cropped_img.append(file_out)
         else:
             file_in = os.path.join(product_path, pth)
-            if os.path.splitext(file_in)[1] == '.TIF':
+            if os.path.splitext(pth)[1].lower() == '.tif':
                 print("vector file : ", vector_file)
                 # Check EPSG
                 d_file_in = gdal.Open(file_in)
@@ -275,25 +275,25 @@ def crop_images(out_product_path, product_path, vector_file):
 
 
 
-                if os.path.splitext(pth)[1].lower() == '.tif':
-                    print("input_file 2 : ", file_in)
-                    # subprocess.call(['gdal_warp', '-cutline', shp_file, '-crop_to_cutline' file_in, file_out ])
-                    print("new vector file: ", vector_file)
-                    with fiona.open(vector_file, "r") as vector_ds:
-                        shapes = [feature["geometry"] for feature in vector_ds]
-                    file_out = os.path.join(out_product_path, pth)
-                    if os.path.exists(file_out):
-                        os.remove(file_out)
-                    with rasterio.open(file_in) as src:
-                        out_image, out_transform = rasterio.mask.mask(src, shapes, crop=True)
-                        out_meta = src.meta
-                        out_meta.update({"driver": "GTiff",
-                                         "height": out_image.shape[1],
-                                         "width": out_image.shape[2],
-                                         "transform": out_transform})
-                        with rasterio.open(file_out, "w", **out_meta) as dest:
-                            dest.write(out_image)
-                    list_cropped_img.append(file_out)
+                
+                print("input_file 2 : ", file_in)
+                # subprocess.call(['gdal_warp', '-cutline', shp_file, '-crop_to_cutline' file_in, file_out ])
+                print("new vector file: ", vector_file)
+                with fiona.open(vector_file, "r") as vector_ds:
+                    shapes = [feature["geometry"] for feature in vector_ds]
+                file_out = os.path.join(out_product_path, pth)
+                if os.path.exists(file_out):
+                    os.remove(file_out)
+                with rasterio.open(file_in) as src:
+                    out_image, out_transform = rasterio.mask.mask(src, shapes, crop=True)
+                    out_meta = src.meta
+                    out_meta.update({"driver": "GTiff",
+                                     "height": out_image.shape[1],
+                                     "width": out_image.shape[2],
+                                     "transform": out_transform})
+                    with rasterio.open(file_out, "w", **out_meta) as dest:
+                        dest.write(out_image)
+                list_cropped_img.append(file_out)
     return list_cropped_img
 
 
