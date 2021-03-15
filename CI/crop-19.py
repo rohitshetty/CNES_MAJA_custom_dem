@@ -224,7 +224,6 @@ def crop_images(out_product_path, product_path, vector_file):
     #out_product_path = os.path.join(output_path, os.path.basename(product_path))
     #os.makedirs(out_product_path, exist_ok=True)
     list_cropped_img = []
-    print("==dir : ", product_path)
     for pth in os.listdir(product_path):
         if os.path.isdir(os.path.join(product_path, pth)):
             for f in os.listdir(os.path.join(product_path, pth)):
@@ -250,15 +249,10 @@ def crop_images(out_product_path, product_path, vector_file):
         else:
             file_in = os.path.join(product_path, pth)
             if os.path.splitext(file_in)[1] == '.TIF':
-
                 print("vector file : ", vector_file)
-
                 # Check EPSG
-                print("======== filein :: ", file_in)
                 d_file_in = gdal.Open(file_in)
                 proj_file_in = osr.SpatialReference(wkt=d_file_in.GetProjection())
-                print("=========" , d_file_in)
-                print("=========" , d_file_in.GetProjection())
                 epsg_file_in = proj_file_in.GetAttrValue('AUTHORITY', 1)
 
                 d_file_in = None
