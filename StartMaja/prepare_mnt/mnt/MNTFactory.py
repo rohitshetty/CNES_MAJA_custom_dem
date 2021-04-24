@@ -44,7 +44,7 @@ class MNTFactory:
         error = None
         # TODO Add more options here: ALOS, TDX...
 
-        if self.type_dem === 'nordem':
+        if self.type_dem == 'nordem':
             try: 
                 return NorDEM(site=self.site,
                              **self.kwargs).to_maja_format(platform_id=self.plaform_id,
