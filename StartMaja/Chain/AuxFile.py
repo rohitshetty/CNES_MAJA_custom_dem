@@ -109,4 +109,5 @@ class DTMFile(EarthExplorer):
     regex = r"\w*_(TEST|PROD)_AUX_REFDE2_\w+"
 
     mnt_version = {"srtm": ["1001", "0001"], "merit": ["2001"], "eudem": ["3001"],
+    "nordem": ["4001"],
                    "any": [r"\d001"]}

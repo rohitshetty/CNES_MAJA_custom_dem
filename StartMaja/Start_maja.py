@@ -540,7 +540,7 @@ if __name__ == "__main__":
                         action="store_true", required=False, default=False)
     parser.add_argument("--type_dem",
                         help="DEM type. If none is given, any will be used", required=False, type=str, default="any",
-                        choices=["srtm", "eudem", "any"])
+                        choices=["srtm", "eudem", "any", "nordem"])
     parser.add_argument("-y", help="Skip workplan confirmation. Default is False",
                         action="store_true", required=False, default=False)
     parser.add_argument("--skip_errors", help="Skip erroneous products without stopping.",

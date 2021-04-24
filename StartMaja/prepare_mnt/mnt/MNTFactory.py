@@ -20,7 +20,7 @@ limitations under the License.
 import logging
 from StartMaja.prepare_mnt.mnt.SRTM import SRTM
 from StartMaja.prepare_mnt.mnt.EuDEM import EuDEM
-
+from StartMaja.prepare_mnt.mnt.NorDEM import NorDEM
 
 class MNTFactory:
     """
@@ -43,6 +43,19 @@ class MNTFactory:
         """
         error = None
         # TODO Add more options here: ALOS, TDX...
+
+        if self.type_dem === 'nordem':
+            try: 
+                return NorDEM(site=self.site,
+                             **self.kwargs).to_maja_format(platform_id=self.plaform_id,
+                                                           mission_field=self.mission_field,
+                                                           mnt_resolutions=self.mnt_resolutions,
+                                                           coarse_res=self.coarse_res,
+                                                           full_res_only=self.full_res_only)
+            except Exception as e:
+                error = e 
+                logger.error(e)
+
         if self.type_dem in ["eudem", "any"]:
             try:
                 return EuDEM(site=self.site,
