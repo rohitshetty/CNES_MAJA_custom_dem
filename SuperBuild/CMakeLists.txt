@@ -192,9 +192,9 @@ configure_file(${CMAKE_SOURCE_DIR}/CMake/CTestCustom.cmake.in
 find_program(PATCHELF_COMMAND NAMES ${CMAKE_BINARY_DIR}/PATCHELF/src/patchelf/src/)
 find_program(EGREP_COMMAND NAMES egrep)
 
-set(EXPAT_URL "http://downloads.sourceforge.net/project/expat/expat/2.1.0/expat-2.1.0.tar.gz")
-set(EXPAT_URL_MD5 dd7dab7a5fea97d2a6a43f511449b7cd)
-set(EXPAT_CONFIG_ARGS -DBUILD_examples:BOOL=OFF -DBUILD_tests:BOOL=OFF -DBUILD_tools:BOOL=OFF)
+set(EXPAT_URL "http://downloads.sourceforge.net/project/expat/expat/2.3.0/expat-2.3.0.tar.gz")
+set(EXPAT_URL_MD5 fb89c9a3dcc1e00e0fe0d0200af692dc)
+set(EXPAT_CONFIG_ARGS -DBUILD_examples:BOOL=OFF -DBUILD_tests:BOOL=OFF -DBUILD_tools:BOOL=OFF -DCMAKE_INSTALL_LIBDIR:STRING=lib)
 
 set(ZLIB_URL "http://downloads.sourceforge.net/project/libpng/zlib/1.2.8/zlib-1.2.8.tar.gz")
 set(ZLIB_URL_MD5 44d667c142d7cda120332623eab69f40)
